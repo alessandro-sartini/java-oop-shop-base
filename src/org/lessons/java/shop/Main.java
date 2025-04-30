@@ -7,6 +7,7 @@ public class Main {
         System.out.println(p1.price);
         System.out.println(p1.productCode);
         p1.priceWithIva();
+        System.out.println(p1.priceWithIvaString());
         System.out.println(p1.extendedName());
     }
 }

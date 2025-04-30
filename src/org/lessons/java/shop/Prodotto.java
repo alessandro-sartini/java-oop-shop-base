@@ -23,7 +23,11 @@ public class Prodotto {
         float priceIva = price * iva / 100 + price;
         System.out.printf("Il prezzo comprensivo di iva e' %.2f %n", priceIva);
     }
-
+    String priceWithIvaString() {
+        float priceIva = price * iva / 100 + price;
+        String formatPrice= String.format("%.2f",priceIva);
+        return formatPrice;
+   }
     String extendedName() {
         String fullName = name + "-" + productCode;
         return fullName;
