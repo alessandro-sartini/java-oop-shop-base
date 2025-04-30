@@ -10,20 +10,22 @@ public class Prodotto {
     float price;
     int iva = 22;
 
-    Random ran= new Random();
+    Random ran = new Random();
 
-    Prodotto(String name,String description,float price){
-        this.name=name;
-        this.description=description;
-        this.price=price;
-        this.productCode=ran.nextInt(1000);
+    Prodotto(String name, String description, float price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.productCode = ran.nextInt(1000);
     }
-    void priceWithIva(){
-        float priceIva=price * iva / 100 + price;
-        System.out.println("il prezzo comprensivo di iva e` "+ priceIva);
+
+    void priceWithIva() {
+        float priceIva = price * iva / 100 + price;
+        System.out.printf("Il prezzo comprensivo di iva e' %.2f %n", priceIva);
     }
-    String extendedName(){
-        String fullName= name+"-"+productCode;
+
+    String extendedName() {
+        String fullName = name + "-" + productCode;
         return fullName;
     }
 }
