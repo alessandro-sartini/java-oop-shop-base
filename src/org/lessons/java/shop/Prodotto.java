@@ -1,35 +1,77 @@
 package org.lessons.java.shop;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Random;
 
 public class Prodotto {
 
-    int productCode;
-    String name;
-    String description;
-    float price;
-    int iva = 22;
+    private int productCode;
+    private String name;
+    private String description;
+    private BigDecimal price;
+    private BigDecimal iva;
 
-    Random ran = new Random();
-
-    Prodotto(String name, String description, float price) {
+    public Prodotto(String name, String description, BigDecimal price, BigDecimal iva) {
+        Random rand = new Random();
         this.name = name;
         this.description = description;
         this.price = price;
-        this.productCode = ran.nextInt(1000);
+        this.iva = iva;
+        this.productCode = rand.nextInt(1000);
     }
 
-    void priceWithIva() {
-        float priceIva = price * iva / 100 + price;
-        System.out.printf("Il prezzo comprensivo di iva e' %.2f %n", priceIva);
+    public Prodotto(String name, BigDecimal price, BigDecimal iva) {
+        Random rand = new Random();
+        this.name = name;
+        this.price = price;
+        this.iva = iva;
+        this.productCode = rand.nextInt(1000);
     }
-    String priceWithIvaString() {
-        float priceIva = price * iva / 100 + price;
-        String formatPrice= String.format("%.2f",priceIva);
-        return formatPrice;
-   }
-    String extendedName() {
-        String fullName = name + "-" + productCode;
+
+    public int getCode() {
+        return productCode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name){
+        this.name=name;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setName(BigDecimal newPrice){
+        this.price=newPrice;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    
+
+    public void setDescription(String description){
+        this.description=description;
+    }
+
+    public BigDecimal getBasePrice() {
+        return this.price;
+    }
+
+    public BigDecimal getIvaPrice() {
+        if (price != null && iva != null) {
+            return price.add(price.multiply(iva).setScale(2, RoundingMode.DOWN));
+        }
+        return null;
+    }
+
+    public String extendedName() {
+        String fullName = productCode + "-" + name;
         return fullName;
     }
+
 }
